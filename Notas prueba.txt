@@ -1,1 +1,56 @@
-Hola mamsita
+git clone <REPO_URL>: Descargar el repositorio de la nube y crear una copia de la rama main localmente
+e.g. "git clone https://github.com/jorgehdzg1991/git-411-2022.git"
+
+
+remota / origin
+- origin/main
+
+local
+- main
+
+SINCRONIZACION
+
+git status: Nos permite conocer el estatus de sincronizacion de la rama remota y local, tambien nos muestra si hay archivos modificados y pendientes de sincronizar
+
+Pasos para subir cambios:
+1. Preparar (o hacer track/stage) de los archivos que queremos subir.
+	- git add "<NOMBRE_ARCHIVO>"
+	* Nota: para hacer "unstage" de un archivo usamos el comando git restore --staged "<NOMBRE_ARCHIVO>"
+2. Crear un commit
+	- Un commit es un conjunto de cambios con un mensaje que los describa
+	- git commit -m "<MENSAJE>"
+3. Sincronizamos la rama remota con los cambios en la rama local
+	- git push
+
+Pasos para descargar cambios desde la rama remota:
+1. Actualizamos el historial de commits localmente
+	- git fetch
+2. Sincronizamos la rama local con los cambios en la rama remota
+
+
+CREACION DE RAMAS
+Una rama es una subdivision de otra rama a partir de cierto punto.
+
+1. Crear la rama localmente
+	- git checkout -b "<NOMBRE_RAMA>"
+2. Subir la rama al repositorio en la nube
+	- git push --set-upstream origin "<NOMBRE_RAMA>"
+
+ELIMINACION DE RAMAS
+1. Cambiarse a otra rama diferente a la que se quiere borrar (puede ser main)
+	- git checkout "<NOMBRE_RAMA>". e.g. "git checkout main"
+2. Borramos la rama local
+	- git branch -d mi-rama-2
+3. Borramos la rama remota
+	- git push origin --delete mi-rama-2
+
+INTEGRACION DE CAMBIOS DE UNA RAMA A OTRA
+1. Actualizar ambas ramas (la recibe cambios, y la los contiene)
+	- git fetch
+	- git pull
+	* Nota: repetir estos dos comandos en cada una de las ramas
+2. Nos cambiamos a la rama que va a recibir los cambios
+	- git checkout "<NOMBRE_RAMA_QUE_RECIBE_CAMBIOS>"
+	* Nota: Para estar seguros, podemos ejecutar git status
+3. Integramos los cambios de la rama que los contiene
+	- git merge "<NOMBRE_RAMA_CON_CAMBIOS>"
